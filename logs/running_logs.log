@@ -1,0 +1,4 @@
+[2024-02-11 20:05:47,133: INFO: main: Welcome to our custom logging]
+[2024-02-11 20:05:47,133] INFO: main: Welcome to our custom logging
+[2024-02-11 20:07:35,056: INFO: main: Welcome to our custom logging]
+[2024-02-11 20:07:35,056] INFO: main.py:12: Welcome to our custom logging
