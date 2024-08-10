@@ -4,7 +4,7 @@ import base64
 from io import BytesIO
 import os
 import time
-from transformers import pipeline
+#from transformers import pipeline
 
 # Function to load images with error handling
 def load_image(image_path):
