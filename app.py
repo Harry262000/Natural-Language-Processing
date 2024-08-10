@@ -58,6 +58,11 @@ st.sidebar.markdown("""
         text-align: left;
         margin-bottom: 10px;
     }
+    .sidebar-text-name{
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: center;
+    }
     .sidebar-link {
         text-align: center;
         margin-bottom: 10px;
@@ -83,7 +88,7 @@ image.save(buffered, format="JPEG")
 img_str = base64.b64encode(buffered.getvalue()).decode()
 
 st.sidebar.markdown(f'<div class="circle-image"><img src="data:image/jpeg;base64,{img_str}"></div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sidebar-text">Harshal Honde</div>', unsafe_allow_html=True)
+st.sidebar.markdown('<div class="sidebar-text-name">Harshal Honde</div>', unsafe_allow_html=True)
 
 # Sidebar contact and social links
 st.sidebar.markdown('<div class="sidebar-section-title">Contact Information:</div>', unsafe_allow_html=True)
@@ -119,15 +124,20 @@ st.sidebar.markdown("""
     <li class="sidebar-text">Python</li>
     <li class="sidebar-text">Machine Learning</li>
     <li class="sidebar-text">NLP</li>
-    <li class="sidebar-text">Text Extraction</li>
-    <li class="sidebar-text">Unstructured Data Handling</li>
+    <li class="sidebar-text">T5</li>
+    <li class="sidebar-text">BERT</li>
+    <li class="sidebar-text">Deep Learning</li>
+    <li class="sidebar-text">Transformers</li>
 </ul>
 """, unsafe_allow_html=True)
 
-st.sidebar.markdown('<div class="sidebar-section-title">Hobbies and Interests</div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sidebar-text">Reading</div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sidebar-text">Traveling</div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sidebar-text">Gaming</div>', unsafe_allow_html=True)
+st.sidebar.markdown("""
+    <a href="https://www.linkedin.com/in/harshal-honde268/" target="_blank">
+        <button style="background-color: #FF4B4B; border-radius: 8px; border: none; color: white; padding: 12px 30px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer;">
+            Hire me
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
 
 # Title of the app
 st.title("Advanced Automated Text Summarization System")
@@ -147,6 +157,30 @@ This application allows you to upload a document or paste text directly, select 
 ### Upload Guidelines:
 - **File Format:** Ensure the file is a text format (.txt).
 - **Maximum File Size:** The maximum file size allowed is 5 MB.
+""")
+# Example text
+example_text = """
+Machine learning is a field of artificial intelligence that uses statistical techniques to give computers the ability to learn from data without being explicitly programmed. It involves algorithms that can identify patterns and make predictions.
+"""
+
+# Simulated summaries for each technique (you'll replace these with actual model outputs)
+extractive_summary = "Machine learning is a field of artificial intelligence that uses statistical techniques to give computers the ability to learn from data."
+abstractive_summary = "Machine learning enables computers to learn from data and make predictions using advanced algorithms, a key aspect of artificial intelligence."
+hybrid_summary = "Machine learning, a subset of artificial intelligence, involves statistical methods that allow computers to learn from and predict data patterns, without direct programming."
+
+# Display the example text
+st.write("### Example Text")
+st.write(example_text)
+
+# Displaying the table with summaries
+st.write("""
+### Summarization Techniques
+
+| **Technique**   | **Description**                                                                                                           | **Example**                                                                                                         |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| **Extractive**  | Selects important sentences or phrases directly from the original text to create a summary. It essentially "extracts" parts of the original content. | **Extractive Summary:** "Machine learning is a field of artificial intelligence that uses statistical techniques to give computers the ability to learn from data."  |
+| **Abstractive** | Generates new sentences that paraphrase the original text. This method creates a summary that might not directly use the original wording but still conveys the same meaning. | **Abstractive Summary:** "Machine learning enables computers to learn from data and make predictions using advanced algorithms, a key aspect of artificial intelligence." |
+| **Hybrid**      | Combines both extractive and abstractive methods. It first extracts key sentences or phrases and then uses abstractive techniques to refine and paraphrase the extracted content. | **Hybrid Summary:** "Machine learning, a subset of artificial intelligence, involves statistical methods that allow computers to learn from and predict data patterns, without direct programming."
 """)
 
 # Input type selection
@@ -194,7 +228,8 @@ if input_method == "Upload Document":
                     st.text_area("Summary", value=summary, height=200)
 
 elif input_method == "Paste Text":
-    text_input = st.text_area("Paste Your Text Here:", height=300)
+    text_input = st.text_area("Paste Your Text Here:", height=200)
+    st.markdown("Press 'ctrl + Enter' to submit text...")
     
     if text_input:
         st.subheader("Summarization Options")
