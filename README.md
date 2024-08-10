@@ -4,7 +4,7 @@
 This project provides an advanced text summarization system that supports multiple types of documents (news articles, scientific papers, legal documents) and offers both extractive and abstractive summarization techniques. It features a user-friendly web interface, multi-language support, and advanced evaluation metrics.
 
 ### Streamlit View
-Deploy and interact with the project live using Streamlit, allowing users to experience the summarization capabilities in real-time. [Check the deployed and interactive project here.](link_to_streamlit_app)
+Deploy and interact with the project live using Streamlit, allowing users to experience the summarization capabilities in real-time. [Check the deployed and interactive project here.](https://advanced-automated-text-summarization-harry262000.streamlit.app/)
 1. Upload a document through the Streamlit interface.
 2. Select the type of summarization (extractive, abstractive, or hybrid).
 3. Generate the summary and view the results along with evaluation metrics.
