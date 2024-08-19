@@ -6,6 +6,11 @@ import os
 import time
 #from transformers import pipeline
 
+
+st.set_page_config(
+    page_title = "TextSummarizer",
+    layout="wide",
+)
 # Function to load images with error handling
 def load_image(image_path):
     if os.path.exists(image_path):
@@ -91,7 +96,6 @@ st.sidebar.markdown(f'<div class="circle-image"><img src="data:image/jpeg;base64
 st.sidebar.markdown('<div class="sidebar-text-name">Harshal Honde</div>', unsafe_allow_html=True)
 
 # Sidebar contact and social links
-st.sidebar.markdown('<div class="sidebar-section-title">Contact Information:</div>', unsafe_allow_html=True)
 st.sidebar.markdown('<div class="sidebar-text">HarshalHonde50@gmail.com</div>', unsafe_allow_html=True)
 if linkedin_icon_base64 and github_icon_base64:
     st.sidebar.markdown(f"""
