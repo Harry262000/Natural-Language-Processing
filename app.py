@@ -4,7 +4,9 @@ import base64
 from io import BytesIO
 import os
 import time
-#from transformers import pipeline
+import sys 
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src', 'models'))
+from transformers import pipeline
 
 
 st.set_page_config(
