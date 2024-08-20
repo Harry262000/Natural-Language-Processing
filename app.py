@@ -6,7 +6,7 @@ import os
 import time
 import sys 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src', 'models'))
-from transformers import pipeline
+from models import load_models
 
 
 st.set_page_config(
@@ -193,20 +193,18 @@ st.write("""
 input_method = st.radio("Select Input Method:", ("Upload Document", "Paste Text"))
 
 # Lazy-loaded summarization models
+@st.cache_resource  # Cache the models to improve performance
 def load_models():
-    return pipeline("summarization", model="facebook/bart-large-cnn"), pipeline("summarization", model="t5-base")
+    tokenizer, model = load_models()
+    return tokenizer, model
 
 # Summarization function
 def summarize_text(text, summarization_type, max_length):
-    extractive_model, abstractive_model = load_models()
-    if summarization_type == "Extractive":
-        summary = extractive_model(text, max_length=max_length, min_length=30, do_sample=False)
-    elif summarization_type == "Abstractive":
-        summary = abstractive_model(text, max_length=max_length, min_length=30, do_sample=False)
-    else:  # Hybrid (first extractive, then abstractive)
-        intermediate_summary = extractive_model(text, max_length=max_length, min_length=30, do_sample=False)
-        summary = abstractive_model(intermediate_summary[0]['summary_text'], max_length=max_length, min_length=30, do_sample=False)
-    return summary[0]['summary_text']
+    tokenizer, model = load_models()
+    inputs = tokenizer(text, return_tensors="pt", max_length=1024, truncation=True)
+    summary_ids = model.generate(inputs['input_ids'], max_length=max_length, min_length=30, length_penalty=2.0, num_beams=4, early_stopping=True)
+    summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+    return summary
 
 if input_method == "Upload Document":
     uploaded_file = st.file_uploader("Upload a text file", type="txt", help="Select a text file (up to 5 MB)")
