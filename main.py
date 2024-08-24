@@ -13,3 +13,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Set the environment variable to disable symlink warnings
+os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'

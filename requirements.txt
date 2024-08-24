@@ -11,4 +11,7 @@ matplotlib
 plotly
 torch
 streamlit
-
+accelerate
+bertviz
+umap-learn
+urllib3
